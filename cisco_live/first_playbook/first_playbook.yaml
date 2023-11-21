@@ -1,0 +1,54 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Get home directory
+      command: echo $HOME
+      register: home_directory
+      changed_when: false
+
+    - name: Check if intro-to-ansible directory exists
+      stat:
+        path: "{{ home_directory.stdout }}/intro-ansible-automation"
+      register: repo
+
+    - name: Clone intro-to-ansible repo from GitHub
+      git:
+        repo: https://github.com/xanderstevenson/intro-ansible-automation.git
+        dest: "{{ home_directory.stdout }}/intro-ansible-automation"
+      when: repo.stat.exists == False
+
+    - name: Install Ansible
+      pip:
+        name: ansible
+        state: latest
+
+    - name: Verify Ansible version
+      command: ansible --version
+      register: version
+      changed_when: false
+
+    - debug: var=version.stdout_lines
+
+    - name: Create Ansible configuration file
+      blockinfile:
+        path: "{{ home_directory.stdout }}/intro-ansible-automation/ansible.cfg"
+        create: yes
+        block: |
+          [defaults]
+          gathering = explicit
+          host_key_checking = True
+          timeout = 10
+          deprecation_warnings = False
+          retry_files_enabled = False
+          DEFAULT_LOCAL_TMP = ./ansible_tmp
+          transport = paramiko
+          look_for_keys = False
+
+    - name: Verify Ansible configuration file
+      command: cat /etc/ansible/ansible.cfg
+      register: config
+      changed_when: false
+
+    - debug: var=config.stdout_lines
+...
