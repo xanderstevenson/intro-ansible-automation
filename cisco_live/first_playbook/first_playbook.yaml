@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  connection: local
+  gather_facts: false
   tasks:
     - name: Get home directory
       command: echo $HOME
@@ -18,27 +19,35 @@
         dest: "{{ home_directory.stdout }}/intro-ansible-automation"
       when: repo.stat.exists == False
 
+    - name: Check if Ansible is installed
+      command: ansible --version
+      register: ansible_check
+      changed_when: false
+      ignore_errors: true
+
     - name: Install Ansible
       pip:
         name: ansible
         state: latest
+      when: ansible_check.failed
 
-    - name: Verify Ansible version
+    - name: Check Ansible version
       command: ansible --version
       register: version
       changed_when: false
 
-    - debug: var=version.stdout_lines
+    - name: Print Ansible version
+      debug: var=version.stdout_lines
 
     - name: Create Ansible configuration file
       blockinfile:
         path: "{{ home_directory.stdout }}/intro-ansible-automation/ansible.cfg"
-        create: yes
+        create: true
         block: |
           [defaults]
           gathering = explicit
           host_key_checking = True
-          timeout = 30
+          timeout = 10
           deprecation_warnings = False
           retry_files_enabled = False
           DEFAULT_LOCAL_TMP = ./ansible_tmp
