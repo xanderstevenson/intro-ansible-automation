@@ -38,7 +38,7 @@
           [defaults]
           gathering = explicit
           host_key_checking = True
-          timeout = 10
+          timeout = 30
           deprecation_warnings = False
           retry_files_enabled = False
           DEFAULT_LOCAL_TMP = ./ansible_tmp
