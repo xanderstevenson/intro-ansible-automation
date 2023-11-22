@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Download playbook file
+      get_url:
+        url: "https://raw.githubusercontent.com/xanderstevenson/intro-ansible-automation/main/cisco_live/ansible-playbooks/hello_world.yaml"
+        dest: "./hello_world.yaml"
+        mode: '0644'
+      register: download
+
+    - name: Execute the playbook
+      shell: ansible-playbook ./hello_world.yaml
+      register: result
+      when: download is changed or download is succeeded
+
+    - set_fact:
+        hello_world_line: "{{ item.split(': ')[1] | default('') | replace('\"', '') }}"
+      when: "'Hello, World!' in item"
+      with_items: "{{ result.stdout_lines }}"
+      no_log: True
+
+    - debug:
+        msg: "{{ hello_world_line }}"
