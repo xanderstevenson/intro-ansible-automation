@@ -3,21 +3,6 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: Get home directory
-      command: echo $HOME
-      register: home_directory
-      changed_when: false
-
-    - name: Check if intro-to-ansible directory exists
-      stat:
-        path: "{{ home_directory.stdout }}/intro-ansible-automation"
-      register: repo
-
-    - name: Clone intro-to-ansible repo from GitHub
-      git:
-        repo: https://github.com/xanderstevenson/intro-ansible-automation.git
-        dest: "{{ home_directory.stdout }}/intro-ansible-automation"
-      when: repo.stat.exists == False
 
     - name: Check if Ansible is installed
       command: ansible --version
@@ -41,7 +26,7 @@
 
     - name: Create Ansible configuration file
       blockinfile:
-        path: "{{ home_directory.stdout }}/intro-ansible-automation/ansible.cfg"
+        path: "home/devnet/workshop/DEVWKS-1423/ansible.cfg"
         create: true
         block: |
           [defaults]
@@ -55,7 +40,7 @@
           look_for_keys = False
 
     - name: Verify Ansible configuration file
-      command: cat /etc/ansible/ansible.cfg
+      command: cat home/devnet/workshop/DEVWKS-1423/ansible.cfg
       register: config
       changed_when: false
 
