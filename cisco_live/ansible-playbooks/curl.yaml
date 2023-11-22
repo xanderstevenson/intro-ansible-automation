@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Check if jq is installed
+      shell: command -v jq
+      register: jq_installed
+      failed_when: false
+      changed_when: false
+
+    - name: Download and install jq
+      get_url:
+        url: https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+        dest: "home/devnet/workshop/DEVWKS-1423/jq"
+        mode: '0755'
+      when: jq_installed.rc != 0
