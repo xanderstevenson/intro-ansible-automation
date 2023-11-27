@@ -1,0 +1,21 @@
+LIST OF COMMANDS YOU MIGHT NEED FOR THE DEMOS
+
+
+Change directory into our Workshop folder
+
+cd /home/devnet/workshop/DEVWKS-1423
+
+
+
+Install Ansible and verify
+
+pip install --upgrade ansible
+ansible-config –version
+
+
+
+Create Ansible config file and verify its content
+
+echo -e "[defaults]\ngathering = explicit\nhost_key_checking = True\ntimeout = 30\ndeprecation_warnings = False\nretry_files_enabled = False\nDEFAULT_LOCAL_TMP = ./ansible_tmp\ntransport = paramiko\nlook_for_keys = False" > ansible.cfg
+
+cat ansible.cfg
