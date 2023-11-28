@@ -18,8 +18,8 @@ ansible-config –version
 
 
 
-Create Ansible config file on CLI and verify its content
--------------------------------------------------
+Create Ansible config file on CLI and verify its contents
+---------------------------------------------------------
 echo -e "[defaults]\ngathering = explicit\nhost_key_checking = True\ntimeout = 30\ndeprecation_warnings = False\nretry_files_enabled = False\nDEFAULT_LOCAL_TMP = ./ansible_tmp\ntransport = paramiko\nlook_for_keys = False" > ansible.cfg
 
 cat ansible.cfg
