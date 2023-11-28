@@ -41,6 +41,12 @@ ansible-playbook github.yaml
 
 
 
+Check if jq is installed and, if not, have Ansible install it using cURL
+————————————————————————————————————————————————————————————————————————
+ansible-playbook curl.yaml
+
+
+
 Clone intro-to-ansible repo from GitHub
 ---------------------------------------
 git clone https://github.com/xanderstevenson/intro-ansible-automation.git
