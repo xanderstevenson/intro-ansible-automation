@@ -1,13 +1,17 @@
-LIST OF COMMANDS YOU MIGHT NEED FOR THE DEMOS
+LIST OF COMMANDS FOR THE DEMOS
 
 
 Change directory into our Workshop folder
-
+-----------------------------------------
 cd /home/devnet/workshop/DEVWKS-1423
 
 
 
-Install Ansible and verify
+Verify Ansible installation and version
+---------------------------------------
+ansible-config –version
+
+(if not installed, perform the following)
 
 pip install --upgrade ansible
 ansible-config –version
@@ -15,7 +19,14 @@ ansible-config –version
 
 
 Create Ansible config file and verify its content
-
+-------------------------------------------------
 echo -e "[defaults]\ngathering = explicit\nhost_key_checking = True\ntimeout = 30\ndeprecation_warnings = False\nretry_files_enabled = False\nDEFAULT_LOCAL_TMP = ./ansible_tmp\ntransport = paramiko\nlook_for_keys = False" > ansible.cfg
 
 cat ansible.cfg
+
+
+
+Clone intro-to-ansible repo from GitHub
+---------------------------------------
+git clone https://github.com/xanderstevenson/intro-ansible-automation.git
+cd intro-ansible-automation/cisco_live
