@@ -26,13 +26,13 @@
 
     - name: Create Ansible configuration file
       blockinfile:
-        path: "home/devnet/workshop/DEVWKS-1423/ansible.cfg"
+        path: "/home/devnet/workshop/DEVWKS-1423/ansible.cfg"
         create: true
         block: |
           [defaults]
           gathering = explicit
           host_key_checking = True
-          timeout = 10
+          timeout = 30
           deprecation_warnings = False
           retry_files_enabled = False
           DEFAULT_LOCAL_TMP = ./ansible_tmp
@@ -40,7 +40,7 @@
           look_for_keys = False
 
     - name: Verify Ansible configuration file
-      command: cat home/devnet/workshop/DEVWKS-1423/ansible.cfg
+      command: cat /home/devnet/workshop/DEVWKS-1423/ansible.cfg
       register: config
       changed_when: false
 
