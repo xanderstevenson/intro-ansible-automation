@@ -35,6 +35,12 @@ cat ../ansible.cfg
 
 
 
+Run playbook to download the hello_world playbook and run that one too
+——————————————————————————————————————————————————————————————————————
+ansible-playbook github.yaml
+
+
+
 Clone intro-to-ansible repo from GitHub
 ---------------------------------------
 git clone https://github.com/xanderstevenson/intro-ansible-automation.git
