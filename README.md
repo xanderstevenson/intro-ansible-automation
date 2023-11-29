@@ -1,4 +1,4 @@
-# Intro to Ansible Automation
+# Intro to Ansible for Automation
 
 ## This repo serves as a repository of code to use when following along with the '[Intro to Ansible for Automation](https://www.youtube.com/watch?v=2rDAziMChXs)' video in the DevOps Shop series.
 
