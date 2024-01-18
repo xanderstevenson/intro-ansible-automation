@@ -3,7 +3,7 @@ LIST OF COMMANDS FOR THE DEMOS
 
 Change directory into our Workshop folder
 -----------------------------------------
-cd /home/devnet/workshop/DEVWKS-1423
+cd /home/devnet/workshop/DEVWKS-1700
 
 
 
