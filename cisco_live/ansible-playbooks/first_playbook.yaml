@@ -40,7 +40,7 @@
           look_for_keys = False
 
     - name: Verify Ansible configuration file
-      command: cat /home/devnet/workshop/DEVWKS-1423/ansible.cfg
+      command: cat /home/devnet/workshop/DEVWKS-1700/ansible.cfg
       register: config
       changed_when: false
 
