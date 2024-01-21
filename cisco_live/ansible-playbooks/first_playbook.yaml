@@ -26,7 +26,7 @@
 
     - name: Create Ansible configuration file
       blockinfile:
-        path: "/home/devnet/workshop/DEVWKS-1423/ansible.cfg"
+        path: "/home/devnet/workshop/DEVWKS-1700/ansible.cfg"
         create: true
         block: |
           [defaults]
