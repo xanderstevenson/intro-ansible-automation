@@ -12,6 +12,6 @@
     - name: Download and install jq
       get_url:
         url: https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-        dest: "home/devnet/workshop/DEVWKS-1423/jq"
+        dest: "home/devnet/workshop/DEVWKS-1700/jq"
         mode: '0755'
       when: jq_installed.rc != 0
