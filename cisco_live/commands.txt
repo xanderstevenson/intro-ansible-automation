@@ -9,12 +9,12 @@ cd /home/devnet/workshop/DEVWKS-1700
 
 Verify Ansible installation and version
 ---------------------------------------
-ansible-config –version
+ansible-config –-version
 
 (if not installed, perform the following)
 
 pip install --upgrade ansible
-ansible-config –version
+ansible-config –-version
 
 
 
