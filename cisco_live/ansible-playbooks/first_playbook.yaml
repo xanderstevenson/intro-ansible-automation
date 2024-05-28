@@ -3,7 +3,6 @@
   connection: local
   gather_facts: false
   tasks:
-
     - name: Check if Ansible is installed
       command: ansible-config --version
       register: ansible_check
@@ -24,6 +23,11 @@
     - name: Print Ansible version
       debug: var=version.stdout_lines
 
+    - name: Check if Ansible configuration file exists
+      stat:
+        path: "/home/devnet/workshop/DEVWKS-1700/ansible.cfg"
+      register: ansible_cfg
+
     - name: Create Ansible configuration file
       blockinfile:
         path: "/home/devnet/workshop/DEVWKS-1700/ansible.cfg"
@@ -38,11 +42,14 @@
           DEFAULT_LOCAL_TMP = ./ansible_tmp
           transport = paramiko
           look_for_keys = False
+      when: not ansible_cfg.stat.exists
 
     - name: Verify Ansible configuration file
       command: cat /home/devnet/workshop/DEVWKS-1700/ansible.cfg
       register: config
       changed_when: false
+      when: not ansible_cfg.stat.exists
 
     - debug: var=config.stdout_lines
+      when: not ansible_cfg.stat.exists
 ...
