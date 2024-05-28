@@ -13,7 +13,7 @@ source venv/bin/activate
 
 
 
-Verify Ansible installation and version
+Verify Ansible installation and version (also provides location of config file)
 ---------------------------------------
 ansible-config –-version
 
