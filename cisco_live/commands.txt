@@ -7,6 +7,12 @@ cd /home/devnet/workshop/DEVWKS-1700
 
 
 
+Activate the Virtual Environment
+--------------------------------
+source venv/bin/activate
+
+
+
 Verify Ansible installation and version
 ---------------------------------------
 ansible-config –-version
