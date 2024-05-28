@@ -53,6 +53,12 @@ ansible-playbook curl.yaml
 
 
 
+Run the 'bad' playbook with verbosity to observe detailed error information
+--------------------------------------------------------------------------
+ansible-playbook bad_playbook.yaml -vvvv
+
+
+
 Clone intro-to-ansible repo from GitHub
 ---------------------------------------
 git clone https://github.com/xanderstevenson/intro-ansible-automation.git
