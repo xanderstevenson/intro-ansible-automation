@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   gather_facts: false
-  become: true
+  become: false
   tasks:
     - name: Check if jq is installed
       command: command -v jq
