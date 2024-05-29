@@ -3,15 +3,26 @@
   connection: local
   gather_facts: true
   become: false
+  vars:
+    jq_url: "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
+    jq_dest: "/home/devnet/workshop/DEVWKS-1700/jq"
   tasks:
-    - name: Check if jq is installed
+    - name: Check if jq is installed in the custom directory
       command: command -v jq
       register: jq_installed
       failed_when: false
       changed_when: false
+      ignore_errors: true
 
-    - name: Install jq
-      apt:
-        name: jq
-        state: present
+    - name: Download jq binary to custom directory
+      get_url:
+        url: "{{ jq_url }}"
+        dest: "{{ jq_dest }}"
+        mode: '0755'
+      when: jq_installed.rc != 0
+
+    - name: Set jq binary as executable
+      file:
+        path: "{{ jq_dest }}"
+        mode: '0755'
       when: jq_installed.rc != 0
